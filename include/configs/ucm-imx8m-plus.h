@@ -21,6 +21,17 @@
 
 #endif
 
+#ifdef CONFIG_COMPULAB_DEBUG_UART1
+#undef CFG_MXC_UART_BASE
+#define CFG_MXC_UART_BASE UART1_BASE_ADDR
+#endif
+
+
+#ifdef CONFIG_COMPULAB_DEBUG_UART4
+#undef CFG_MXC_UART_BASE
+#define CFG_MXC_UART_BASE UART4_BASE_ADDR
+#endif
+
 #if defined(CONFIG_ANDROID_SUPPORT)
 #include "ucm-imx8m-plus_android.h"
 #endif

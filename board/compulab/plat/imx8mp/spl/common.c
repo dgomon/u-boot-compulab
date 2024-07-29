@@ -14,6 +14,12 @@ static iomux_v3_cfg_t const uart_pads[] = {
 	MX8MP_PAD_SAI2_RXFS__UART1_DCE_TX| MUX_PAD_CTRL(UART_PAD_CTRL),
 };
 #define UART_CLK_INDEX 0
+#elif CONFIG_COMPULAB_DEBUG_UART4
+static iomux_v3_cfg_t const uart_pads[] = {
+	MX8MP_PAD_UART4_RXD__UART4_DCE_RX | MUX_PAD_CTRL(UART_PAD_CTRL),
+	MX8MP_PAD_UART4_TXD__UART4_DCE_TX | MUX_PAD_CTRL(UART_PAD_CTRL),
+};
+#define UART_CLK_INDEX 3
 #else
 static iomux_v3_cfg_t const uart_pads[] = {
 	MX8MP_PAD_UART2_RXD__UART2_DCE_RX | MUX_PAD_CTRL(UART_PAD_CTRL),

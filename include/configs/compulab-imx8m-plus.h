@@ -38,6 +38,14 @@
 	"emmc_dev=2\0"\
 	"sd_dev=1\0" \
 
+#ifdef CONFIG_COMPULAB_DEBUG_UART1
+#define SERIAL_CONSOLE	"console=ttymxc0,115200"
+#elif CONFIG_COMPULAB_DEBUG_UART4
+#define SERIAL_CONSOLE	"console=ttymxc3,115200"
+#else
+#define SERIAL_CONSOLE	"console=ttymxc1,115200"
+#endif
+
 /* Initial environment variables */
 #define CFG_EXTRA_ENV_SETTINGS		\
 	CFG_MFG_ENV_SETTINGS \
@@ -53,7 +61,7 @@
 	"bsp_script=boot.scr\0" \
 	"image=Image\0" \
 	"splashimage=0x50000000\0" \
-	"console=ttymxc1,115200\0" \
+	SERIAL_CONSOLE "\0" \
 	"fdt_addr_r=0x43000000\0"			\
 	"fdto_addr_r=0x43800000\0"			\
 	"fdt_addr=0x43000000\0"			\

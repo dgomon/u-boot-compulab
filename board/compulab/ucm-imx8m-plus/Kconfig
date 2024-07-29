@@ -41,4 +41,8 @@ config SBEV_UCMIMX8PLUS
 	bool "CompuLab SBEV-UCMIMX8PLUS Support"
 	default n
 
+config COMPULAB_DEBUG_UART4
+	bool "System Debug UART4"
+	default n
+
 endif

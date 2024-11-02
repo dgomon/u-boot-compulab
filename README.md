@@ -40,12 +40,17 @@ cd u-boot-compulab
 make O=${BUILD} ${MACHINE}_defconfig
 ```
 
-* Build
+* Build flash.bin file:
 ```
 nice make -j`nproc` O=${BUILD} flash.bin
 ```
 
-* Result
+* Create u-boot-initial-env file:
 ```
-ls -al ${BUILD}/flash.bin
+make O=${BUILD} u-boot-initial-env
+```
+
+* Results
+```
+ls -al ${BUILD}/{flash.bin,u-boot-initial-env}
 ```

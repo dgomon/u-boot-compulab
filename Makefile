@@ -1532,6 +1532,14 @@ flash.bin: spl/u-boot-spl.bin u-boot.itb FORCE
 	$(Q)$(MAKE) $(build)=arch/arm/mach-imx $@
 endif
 endif
+
+UBOOT_ENV_OFFSET=$(shell echo $$(( $(CONFIG_ENV_OFFSET) >> 9)))
+
+# Create an emmc flash.bin-with-env
+flash.bin-with-env: flash.bin u-boot-initial-env FORCE
+	@dd if=/dev/zero  of=$@ bs=512 count=8192 2>/dev/null
+	@dd if=flash.bin  of=$@ bs=512 seek=0 conv=notrunc 2>/dev/null
+	@cat u-boot-initial-env | mkenvimage -s $(CONFIG_ENV_SIZE) | dd of=$@ bs=512 seek=$(UBOOT_ENV_OFFSET) conv=notrunc 2>/dev/null
 #endif
 
 u-boot.uim: u-boot.bin FORCE

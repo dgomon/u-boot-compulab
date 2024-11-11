@@ -112,7 +112,8 @@ static void iot_gate_imx8_select_dtb(void)
 	char *fdt_src;
 	const char *env_fdt_file = env_get(IOT_GATE_IMX8_ENV_FDT_FILE);
 
-	if (env_fdt_file == NULL) {
+// Variable fdt_file unset or empty -- choose FDT, basing on the HW options
+	if (NULL == env_fdt_file || 0 == env_fdt_file[0]) {
 		env_fdt_file = iot_gate_imx8_dtb[iot_gate_imx8_ext_id];
 		env_set(IOT_GATE_IMX8_ENV_FDT_FILE, env_fdt_file);
 		fdt_src = "det"; // peripheral determines FDT name

@@ -37,7 +37,7 @@ static void ucm_imx8_mini_select_dtb(void)
 	const char *fdt_src;
 	const char *env_fdt_file = env_get(ENV_FDT_FILE);
 	char buf[PRODUCT_OPTION_SIZE * PRODUCT_OPTION_NUM + 1];
-// Variable fdt_file unset or empty -- choose FDT, basing on the device ooptions
+// Variable fdt_file unset or empty -- choose FDT, basing on the device options
 	if (NULL == env_fdt_file || 0 == env_fdt_file[0]) {
 		env_fdt_file = CONFIG_DEFAULT_FDT_WB5; //Valid DTB for all PCB revisions, but 1.4
 		if (cl_eeprom_read_som_options(buf)) {

@@ -192,7 +192,6 @@
 };
 
 &eqos {
-	compatible = "fsl,imx-eqos";
 	/delete-property/ assigned-clocks;
 	/delete-property/ assigned-clock-parents;
 	/delete-property/ assigned-clock-rates;

@@ -50,6 +50,7 @@ void fdt_set_sn(void *blob)
 
 int fdt_set_env_addr(void *blob)
 {
+#ifndef CONFIG_SYS_REDUNDAND_ENVIRONMENT
 	char tmp[32];
 	int nodeoff = fdt_add_subnode(blob, 0, "fw_env");
 	int env_dev = get_env_dev();
@@ -90,5 +91,6 @@ int fdt_set_env_addr(void *blob)
 	dst = 0;
 	fdt_setprop(blob, nodeoff, "default_env", env_to_export, strlen(env_to_export));
 #endif 
+#endif
 	return 0;
 }

@@ -16,6 +16,7 @@
 #include <u-boot/crc.h>
 #include <watchdog.h>
 #include <u-boot/zlib.h>
+#include <env.h>
 
 #define HEADER0			'\x1f'
 #define HEADER1			'\x8b'
@@ -293,7 +294,13 @@ int zunzip(void *dst, int dstlen, unsigned char *src, unsigned long *lenp,
 	s.next_in = src + offset;
 	s.avail_in = *lenp - offset;
 	s.next_out = dst;
-	s.avail_out = dstlen;
+	/* fix fitimage inflate issue */
+	s.avail_out = -1;
+	{
+        int use_dst_size  = env_get_yesno("use_dst_size");
+        if (use_dst_size == 1)
+            s.avail_out = dstlen;
+	}
 	do {
 		r = inflate(&s, Z_FINISH);
 		if (stoponerr == 1 && r != Z_STREAM_END &&
